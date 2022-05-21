@@ -61,11 +61,11 @@ export default function SignUp() {
             <form onSubmit={signUpForm}>
                 <input type="text" value={name} placeholder="Nome" onChange={e => setName(e.target.value)} required />
                 <input type="email" value={email} placeholder="E-mail" onChange={e => setEmail(e.target.value)} required />
-                <input type="password" value={password} placeholder="Senha" onChange={e => setPassword(e.target.value)} required />
                 <select name="select" onChange={(e) => {setType(e.target.value)}}>
-                    <option value="aluno" selected>Aluno</option>
+                    <option value="aluno" defaultValue>Aluno</option>
                     <option value="professor"> Professor</option>
                 </select>
+                <input type="password" value={password} placeholder="Senha" onChange={e => setPassword(e.target.value)} required />
                 <input type="password" value={confirmPassword} placeholder="Confirme a Senha" onChange={e => setConfirmPassword(e.target.value)} required />
                 <button type="submit">Cadastrar</button>
             </form>
