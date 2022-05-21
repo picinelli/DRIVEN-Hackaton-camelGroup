@@ -6,6 +6,8 @@ import styled from "styled-components";
 import plus from '../assets/plus.jpg'
 import Image from 'next/image'
 
+import ContainerCriacao from './ContainerCriacao.js'
+
 
 export default function HomeComponent() {
   const [salas, setSalas] = useState(false)
@@ -69,7 +71,7 @@ export default function HomeComponent() {
         <h2>Salas Globais</h2>
         <Image src={plus} width={70} height={70} onClick={() => setDisabled(false)} />
       </HeaderSalasGerais>
-      <RenderizarCriacaoSala />
+        <ContainerCriacao disabled={disabled} setDisabled={setDisabled} setNovaSala={setNovaSala} novaSala={novaSala} />
       <CarregarSalasGerais />
 
     </ContainerSalasGerais>
@@ -94,32 +96,6 @@ export default function HomeComponent() {
           )
       })
     )
-  }
-
-  function RenderizarCriacaoSala() {
-    if(disabled === true) {
-      return (
-        <ContainerCriacao>
-          <Form>
-            <Input
-              className="valid"
-              placeholder="Nome da sala"
-              type="text"
-              value={novaSala}
-              onChange={(e) => {
-                setNovaSala(e.target.value);
-              }}
-              required
-            />
-          </Form>
-          <WrapperBotoes>
-            <button>Cancelar</button>
-            <button>Criar Sala!</button>
-          </WrapperBotoes>
-        </ContainerCriacao>
-      )
-    }
-    return <></>
   }
 
 }
@@ -223,7 +199,7 @@ const WrapperNome = styled.div`
     padding: 0;
   }
 `
-const ContainerCriacao = styled.div`
+const ContainerCriacaoSala = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -244,8 +220,6 @@ const WrapperBotoes = styled.div`
     margin: 50px 10px 0 10px;
   }
 `
-
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
