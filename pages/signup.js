@@ -11,6 +11,7 @@ export default function SignUp() {
 
     const [name, setName] = useState("")
     const [email, setEmail] = useState("");
+    const [type, setType] = useState("aluno")
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
     const [erro, setErro] = useState(<p></p>); //Usuário e/ou senha incorretos
@@ -31,7 +32,8 @@ export default function SignUp() {
         const promisse = axios.post(URL_BACK + "/sign-up", {
             name: name,
             email: email,
-            password: password
+            password: password,
+            type: type
         })
 
         promisse.then(res => {
@@ -60,6 +62,10 @@ export default function SignUp() {
                 <input type="text" value={name} placeholder="Nome" onChange={e => setName(e.target.value)} required />
                 <input type="email" value={email} placeholder="E-mail" onChange={e => setEmail(e.target.value)} required />
                 <input type="password" value={password} placeholder="Senha" onChange={e => setPassword(e.target.value)} required />
+                <select name="select" onChange={(e) => {setType(e.target.value)}}>
+                    <option value="aluno" selected>Aluno</option>
+                    <option value="professor"> Professor</option>
+                </select>
                 <input type="password" value={confirmPassword} placeholder="Confirme a Senha" onChange={e => setConfirmPassword(e.target.value)} required />
                 <button type="submit">Cadastrar</button>
             </form>
@@ -96,6 +102,17 @@ const SignUpStyle = styled.div`
     }
 
     form > input {
+        height: 58px;
+        width: 326px;
+        border-radius: 5px;
+        border: 0;  
+        padding: 15px;
+        box-sizing: border-box;
+        margin-bottom: 13px;
+        font-size: 20px;
+    }
+
+    form > select {
         height: 58px;
         width: 326px;
         border-radius: 5px;

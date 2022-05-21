@@ -27,7 +27,13 @@ export default function ContainerCriacao(props) {
   return <></>
 
   async function criarSala() {
-    const config = JSON.parse(localStorage.getItem("config"));
+    const token = window.localStorage.getItem("token");
+        
+    const config = {
+      headers: {
+        "authorization": `Bearer ${token}`
+      }
+    }
 
     try {
       await axios.post('https://hackathoncamelgrup.herokuapp.com/', novaSala, config)
