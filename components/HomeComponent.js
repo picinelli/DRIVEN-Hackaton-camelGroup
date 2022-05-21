@@ -10,6 +10,7 @@ import Image from 'next/image'
 export default function HomeComponent() {
   const [salas, setSalas] = useState(false)
   const [disabled, setDisabled] = useState(true)
+  const [novaSala, setNovaSala] = useState("")
 
   useEffect(() => {
     async function buscarSalas() {
@@ -100,43 +101,21 @@ export default function HomeComponent() {
       return (
         <ContainerCriacao>
           <Form>
-          <Input
-            className="valid"
-            placeholder="Nome"
-            type="text"
-
-            required
-          />
-          <Input
-            className="valid"
-            placeholder="Email"
-            type="email"
-
-            required
-          />
-          <Input
-            className="valid"
-            placeholder="Endereço"
-            type="text"
-
-            required
-          />
-          <Input
-            className="valid"
-            placeholder="Senha"
-            type="password"
-
-            required
-          />
-          <Input
-            className="valid"
-            placeholder="Confirme a senha"
-            type="password"
-
-            required
-          />
-
-        </Form>
+            <Input
+              className="valid"
+              placeholder="Nome da sala"
+              type="text"
+              value={novaSala}
+              onChange={(e) => {
+                setNovaSala(e.target.value);
+              }}
+              required
+            />
+          </Form>
+          <WrapperBotoes>
+            <button>Cancelar</button>
+            <button>Criar Sala!</button>
+          </WrapperBotoes>
         </ContainerCriacao>
       )
     }
@@ -245,31 +224,42 @@ const WrapperNome = styled.div`
   }
 `
 const ContainerCriacao = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 30px 30px 30px 30px;
   width: 100%;
-  max-width: 500px;
-  height: 500px;
-  background-color: #EAEAEA;
+  max-width: 400px;
+  height: 200px;
+  background-color: lightgray;
   border-radius: 30px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `
+const WrapperBotoes = styled.div`
+  button {
+    width: 100px;
+    margin: 50px 10px 0 10px;
+  }
+`
+
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-const Input = styled.input`
+const Input = styled.textarea`
   border-radius: 8px;
   border: 0;
-  width: 100%;
-  height: 40px;
-  margin-bottom: 30px;
+  width: 310px;
+  height: 90px;
   padding-left: 10px;
   font-size: 16px;
   ::placeholder {
+    text-align: center;
     font-size: 16px;
     color: #666666;
     padding-left: 4px;
