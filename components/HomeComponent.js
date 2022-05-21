@@ -78,8 +78,7 @@ export default function HomeComponent() {
         salas.data.map((e) => {
           const {nome_sala, sala, usuario_criador, _id} = e
           return (
-            <div key={sala}>
-            <Link href={`/sala/${sala}`}>
+            <Link key={sala} href={`/sala/${sala}`}>
               <WrapperSalaGeral onClick={(e) => {entrarNaSala(e, sala)}}>
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
                 <WrapperNome>
@@ -88,7 +87,6 @@ export default function HomeComponent() {
                 </WrapperNome>
               </WrapperSalaGeral>
             </Link>
-            </div>
           )
       })
     )
