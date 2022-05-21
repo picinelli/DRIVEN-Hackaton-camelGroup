@@ -9,6 +9,8 @@ import Image from 'next/image'
 
 export default function HomeComponent() {
   const [salas, setSalas] = useState(false)
+  const [disabled, setDisabled] = useState(true)
+
   useEffect(() => {
     async function buscarSalas() {
       try {
@@ -64,8 +66,9 @@ export default function HomeComponent() {
     <ContainerSalasGerais>
       <HeaderSalasGerais>
         <h2>Salas Globais</h2>
-        <Image src={plus} width={70} height={70} />
+        <Image src={plus} width={70} height={70} onClick={() => setDisabled(false)} />
       </HeaderSalasGerais>
+      <RenderizarCriacaoSala />
       <CarregarSalasGerais />
 
     </ContainerSalasGerais>
@@ -78,8 +81,8 @@ export default function HomeComponent() {
         salas.data.map((e) => {
           const {nome_sala, sala, usuario_criador, _id} = e
           return (
-            <Link key={sala} href={`/sala/${sala}`}>
-              <WrapperSalaGeral onClick={(e) => {entrarNaSala(e, sala)}}>
+            <Link key={_id} href={`/sala/${_id}`}>
+              <WrapperSalaGeral >
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
                 <WrapperNome>
                   <h3>{nome_sala}</h3>
@@ -92,9 +95,54 @@ export default function HomeComponent() {
     )
   }
 
-  function entrarNaSala(e, sala) {
-    console.log(sala)
+  function RenderizarCriacaoSala() {
+    if(disabled === true) {
+      return (
+        <ContainerCriacao>
+          <Form>
+          <Input
+            className="valid"
+            placeholder="Nome"
+            type="text"
+
+            required
+          />
+          <Input
+            className="valid"
+            placeholder="Email"
+            type="email"
+
+            required
+          />
+          <Input
+            className="valid"
+            placeholder="Endereço"
+            type="text"
+
+            required
+          />
+          <Input
+            className="valid"
+            placeholder="Senha"
+            type="password"
+
+            required
+          />
+          <Input
+            className="valid"
+            placeholder="Confirme a senha"
+            type="password"
+
+            required
+          />
+
+        </Form>
+        </ContainerCriacao>
+      )
+    }
+    return <></>
   }
+
 }
 
 const Header = styled.div`
@@ -166,7 +214,6 @@ const HeaderSalasGerais = styled.div`
   justify-content: space-between;
   height: 100px;
 `
-
 const WrapperSalaGeral = styled.div`
   width: 100%;
   height: 80px;
@@ -197,3 +244,38 @@ const WrapperNome = styled.div`
     padding: 0;
   }
 `
+const ContainerCriacao = styled.div`
+  padding: 30px 30px 30px 30px;
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  background-color: #EAEAEA;
+  border-radius: 30px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const Input = styled.input`
+  border-radius: 8px;
+  border: 0;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 30px;
+  padding-left: 10px;
+  font-size: 16px;
+  ::placeholder {
+    font-size: 16px;
+    color: #666666;
+    padding-left: 4px;
+    /* position: absolute;
+  left: 10px;
+  top: 30%; */
+  }
+`;
+
