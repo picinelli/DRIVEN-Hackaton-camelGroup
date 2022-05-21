@@ -27,7 +27,7 @@ export default function HomeComponent() {
   return (
   <Container>
     <Header>
-      <h1>Bem vindo, Fulano!!</h1>
+      <h1>Bem vindo, Fulano!</h1>
     </Header>
     <ContainerSalasRegistradas>
       <h2>Salas Registradas</h2>
