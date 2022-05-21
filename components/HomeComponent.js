@@ -1,12 +1,30 @@
+import {useEffect, useState} from 'react'
+import Link from 'next/link'
+import axios from 'axios'
+
 import styled from "styled-components";
 import plus from '../assets/plus.jpg'
 import Image from 'next/image'
 
+
 export default function HomeComponent() {
+  const [salas, setSalas] = useState(false)
+  useEffect(() => {
+    async function buscarSalas() {
+      try {
+        setSalas(await axios.get("https://hackathoncamelgrup.herokuapp.com/"))
+      } catch(e) {
+        console.log(e)
+      }
+    }
+    buscarSalas(), console.log(salas.data)
+  }
+  , [])
+
   return (
   <Container>
     <Header>
-      <h1>Bem vindo, Fulano!</h1>
+      <h1>Bem vindo, Fulano!!</h1>
     </Header>
     <ContainerSalasRegistradas>
       <h2>Salas Registradas</h2>
@@ -48,100 +66,35 @@ export default function HomeComponent() {
         <h2>Salas Globais</h2>
         <Image src={plus} width={70} height={70} />
       </HeaderSalasGerais>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
-      <WrapperSalaGeral>
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-        <WrapperNome>
-          <h3>Rahal Wangsaff</h3>
-          <p>Um indiano bem loco</p>
-        </WrapperNome>
-      </WrapperSalaGeral>
+      <CarregarSalasGerais />
+
     </ContainerSalasGerais>
   </Container>
   )
+
+  function CarregarSalasGerais() {
+      if(!salas) return <></>
+      return (
+        salas.data.map((e) => {
+          const {nome_sala, sala, usuario_criador, _id} = e
+          return (
+            <Link key={sala} href={`/sala/${sala}`}>
+              <WrapperSalaGeral onClick={(e) => {entrarNaSala(e, sala)}}>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
+                <WrapperNome>
+                  <h3>{nome_sala}</h3>
+                  <p>{usuario_criador}</p>
+                </WrapperNome>
+              </WrapperSalaGeral>
+            </Link>
+          )
+      })
+    )
+  }
+
+  function entrarNaSala(e, sala) {
+    console.log(sala)
+  }
 }
 
 const Header = styled.div`
@@ -226,6 +179,7 @@ const WrapperSalaGeral = styled.div`
   img {
     object-fit: contain;
     width: 55px;
+    margin-right: 10px;
   }
 `
 const WrapperNome = styled.div`
