@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 
 export default function HomeComponent() {
-  const [salas, setSalas] = useState({data: []})
+  const [salas, setSalas] = useState(false)
   useEffect(() => {
     async function buscarSalas() {
       try {
@@ -66,25 +66,31 @@ export default function HomeComponent() {
         <h2>Salas Globais</h2>
         <Image src={plus} width={70} height={70} />
       </HeaderSalasGerais>
-      {salas.data.map((e) => {
-        const {nome_sala, sala, usuario_criador, _id} = e
-        return (
-          <Link href={`/sala/${sala}`}>
-            <WrapperSalaGeral key={sala} onClick={(e) => {entrarNaSala(e, sala)}}>
-              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
-              <WrapperNome>
-                <h3>{nome_sala}</h3>
-                <p>{usuario_criador}</p>
-              </WrapperNome>
-            </WrapperSalaGeral>
-          </Link>
-
-        )
-      })}
+      <CarregarSalasGerais />
 
     </ContainerSalasGerais>
   </Container>
   )
+
+  function CarregarSalasGerais() {
+      if(!salas) return <></>
+      return (
+        salas.data.map((e) => {
+          const {nome_sala, sala, usuario_criador, _id} = e
+          return (
+            <Link key={sala} href={`/sala/${sala}`}>
+              <WrapperSalaGeral onClick={(e) => {entrarNaSala(e, sala)}}>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"></img>
+                <WrapperNome>
+                  <h3>{nome_sala}</h3>
+                  <p>{usuario_criador}</p>
+                </WrapperNome>
+              </WrapperSalaGeral>
+            </Link>
+          )
+      })
+    )
+  }
 
   function entrarNaSala(e, sala) {
     console.log(sala)
